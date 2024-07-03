@@ -1,0 +1,7 @@
+.addColorForm {
+  display: flex;
+  flex-direction: column;
+  max-width: 30rem;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
