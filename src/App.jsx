@@ -9,17 +9,12 @@ function App() {
   const [colors, setColors] = useState(initialColors);
 
   function handleAddColor(newColor) {
-    setColors([
-      {
-        id: uid(),
-        role: newColor.role,
-        hex: newColor.hex,
-        contrastText: newColor.contrastText,
-      },
-      ...initialColors,
-    ]);
+    setColors([{ id: uid(), ...newColor }, ...initialColors]);
   }
-  console.log(colors);
+
+  function handleDeleteColor(id) {
+    setColors((prevColors) => prevColors.filter((color) => color.id !== id));
+  }
 
   return (
     <>
@@ -27,7 +22,13 @@ function App() {
       <ColorForm onAddColor={handleAddColor} />
 
       {colors.map((color) => {
-        return <Color key={color.id} color={color} />;
+        return (
+          <Color
+            key={color.id}
+            color={color}
+            onDeleteColor={handleDeleteColor}
+          />
+        );
       })}
     </>
   );
