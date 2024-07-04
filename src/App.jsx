@@ -16,10 +16,18 @@ function App() {
     setColors((prevColors) => prevColors.filter((color) => color.id !== id));
   }
 
+  function handleEditColor(updatedColor) {
+    setColors(
+      colors.map((color) =>
+        color.id === updatedColor.id ? updatedColor : color
+      )
+    );
+  }
+
   return (
     <>
       <h1>Theme Creator</h1>
-      <ColorForm onAddColor={handleAddColor} />
+      <ColorForm onAddColor={handleAddColor} buttonName={"ADD COLOR"} />
 
       {colors.map((color) => {
         return (
@@ -27,6 +35,7 @@ function App() {
             key={color.id}
             color={color}
             onDeleteColor={handleDeleteColor}
+            onEditColor={handleEditColor}
           />
         );
       })}
